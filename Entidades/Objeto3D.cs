@@ -141,9 +141,9 @@ namespace Mochileitor3DView
             matrizTrans[1, 1] = 1.0;
             matrizTrans[2, 2] = 1.0;
             matrizTrans[3, 3] = 1.0;
-            matrizTrans[0, 2] = X;
-            matrizTrans[1, 2] = Y;
-            matrizTrans[2, 2] = Z;
+            matrizTrans[0, 3] = X;
+            matrizTrans[1, 3] = Y;
+            matrizTrans[2, 3] = Z;
 
             matrizAux = retMatAux(matrizMa);
 

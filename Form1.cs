@@ -15,12 +15,15 @@ namespace Mochileitor3DView
     {
         private ControladoraArquivo control;
         private Bitmap imgPrincipal;
+        private Boolean wheel;
+        private Boolean ctrl;
 
         public Form1()
         {
             InitializeComponent();
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             picBoxPrincp.Image = imgPrincipal;
+            this.ctrl = this.wheel = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -32,7 +35,7 @@ namespace Mochileitor3DView
             {
                 control = new ControladoraArquivo(openFDialog.FileName);
                 control.leArquivo();
-                control.desenha(imgPrincipal);
+                control.desenha(imgPrincipal,"",100);
                 picBoxPrincp.Image = imgPrincipal;
             }
         }
@@ -54,7 +57,7 @@ namespace Mochileitor3DView
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             control.rotacaoEmX();
-            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            //   control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
             picBoxPrincp.Image = imgPrincipal;
 
         }
@@ -63,7 +66,7 @@ namespace Mochileitor3DView
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             control.rotacaoEmY();
-            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            //  control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
             picBoxPrincp.Image = imgPrincipal;
         }
 
@@ -71,7 +74,7 @@ namespace Mochileitor3DView
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             control.rotacaoEmZ();
-            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            //  control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
             picBoxPrincp.Image = imgPrincipal;
         }
 
@@ -79,7 +82,7 @@ namespace Mochileitor3DView
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             control.escalaPlus();
-            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            //control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
             picBoxPrincp.Image = imgPrincipal;
         }
 
@@ -87,8 +90,34 @@ namespace Mochileitor3DView
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             control.escalaMinus();
-            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+           // control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
             picBoxPrincp.Image = imgPrincipal;
+        }
+
+        protected override void OnMouseWheel(MouseEventArgs e)
+        {
+            base.OnMouseWheel(e);
+            imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
+            
+            control.rotacaoEmY();
+            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal, "", 100);
+            picBoxPrincp.Image = imgPrincipal;
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Control)
+            {
+                this.ctrl = true;
+            }
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if(e.Control)
+            {
+                this.ctrl = false;
+            }
         }
     }
 }
