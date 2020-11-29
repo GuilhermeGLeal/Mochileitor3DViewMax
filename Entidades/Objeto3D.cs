@@ -162,7 +162,7 @@ namespace Mochileitor3DView
                 }
             }
 
-
+            int aasd = 0;
         }
 
         public double retornaCX()

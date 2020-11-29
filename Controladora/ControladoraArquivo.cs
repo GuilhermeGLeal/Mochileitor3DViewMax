@@ -197,7 +197,7 @@ namespace Mochileitor3DView.Controladora
 
         public void escalaPlus()
         {
-            arqv.getObj().escala(1.2);
+            arqv.getObj().escala(1.05);
             arqv.getObj().aplicarMA();
             arqv.getObj().calcularNormais();
 
@@ -205,21 +205,21 @@ namespace Mochileitor3DView.Controladora
 
         public void escalaMinus()
         {
-            arqv.getObj().escala(-1.2);
+            arqv.getObj().escala(-1.05);
             arqv.getObj().aplicarMA();
             arqv.getObj().calcularNormais();
         }
 
-        public void translacaoZ()
+        public void translacaoZ(int valorTrans)
         {
-            arqv.getObj().translacao(1,1, 10);
+            arqv.getObj().translacao(0,0, valorTrans);
             arqv.getObj().aplicarMA();
             arqv.getObj().calcularNormais();
         }
 
-        public void translacaoXY()
+        public void translacaoXY(int valorTrans)
         {
-            arqv.getObj().translacao(10, 10, 1);
+            arqv.getObj().translacao(valorTrans, valorTrans, 0);
             arqv.getObj().aplicarMA();
             arqv.getObj().calcularNormais();
         }

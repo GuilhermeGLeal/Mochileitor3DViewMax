@@ -56,7 +56,7 @@ namespace Mochileitor3DView
         private void button1_Click_1(object sender, EventArgs e)
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
-            control.rotacaoEmX();
+            //control.rotacaoEmX();
             //   control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
             picBoxPrincp.Image = imgPrincipal;
 
@@ -65,7 +65,7 @@ namespace Mochileitor3DView
         private void button2_Click(object sender, EventArgs e)
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
-            control.rotacaoEmY();
+            //control.rotacaoEmY();
             //  control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
             picBoxPrincp.Image = imgPrincipal;
         }
@@ -73,7 +73,7 @@ namespace Mochileitor3DView
         private void button3_Click(object sender, EventArgs e)
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
-            control.rotacaoEmZ();
+            //control.rotacaoEmZ();
             //  control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
             picBoxPrincp.Image = imgPrincipal;
         }
@@ -99,9 +99,24 @@ namespace Mochileitor3DView
             base.OnMouseWheel(e);
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             
-            control.rotacaoEmY();
+            if(ctrl)
+            {
+                if (e.Delta > 0)
+                    control.translacaoZ(10);
+                else
+                    control.translacaoZ(-10);
+            }
+            else
+            {
+                if (e.Delta > 0)
+                    control.escalaMinus();
+                else
+                    control.escalaPlus();
+            }
+           
             control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal, "", 100);
             picBoxPrincp.Image = imgPrincipal;
+            
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
