@@ -32,7 +32,7 @@ namespace Mochileitor3DView
             {
                 control = new ControladoraArquivo(openFDialog.FileName);
                 control.leArquivo();
-                control.desenha(imgPrincipal);
+                control.desenha(imgPrincipal, "asas",100);
                 picBoxPrincp.Image = imgPrincipal;
             }
         }
@@ -54,7 +54,7 @@ namespace Mochileitor3DView
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             control.rotacaoEmX();
-            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal, "as",100);
             picBoxPrincp.Image = imgPrincipal;
 
         }
@@ -63,7 +63,7 @@ namespace Mochileitor3DView
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             control.rotacaoEmY();
-            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal, "as", 100);
             picBoxPrincp.Image = imgPrincipal;
         }
 
@@ -71,7 +71,7 @@ namespace Mochileitor3DView
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             control.rotacaoEmZ();
-            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal, "as", 100);
             picBoxPrincp.Image = imgPrincipal;
         }
 
@@ -79,7 +79,7 @@ namespace Mochileitor3DView
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             control.escalaPlus();
-            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal, "as", 100);
             picBoxPrincp.Image = imgPrincipal;
         }
 
@@ -87,7 +87,7 @@ namespace Mochileitor3DView
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             control.escalaMinus();
-            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal, "as", 100);
             picBoxPrincp.Image = imgPrincipal;
         }
     }

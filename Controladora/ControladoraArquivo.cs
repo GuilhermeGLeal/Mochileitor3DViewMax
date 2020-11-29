@@ -14,7 +14,7 @@ namespace Mochileitor3DView.Controladora
         public ControladoraArquivo(string path)
         {
             this.arqv = new ArquivoOBJ(path);
-            Console.log("asas");
+          
         }
 
         public Ponto retornaPespectiva(Ponto pontAtual, int d)
@@ -23,8 +23,6 @@ namespace Mochileitor3DView.Controladora
 
             novoPonto.X = (pontAtual.X * d) / (pontAtual.Z + d);
             novoPonto.Y = (pontAtual.Y * d) / (pontAtual.Z + d);
-            Console.WriteLine("asas");
-
             return novoPonto;
         }
                
@@ -199,7 +197,7 @@ namespace Mochileitor3DView.Controladora
 
         public void escalaPlus()
         {
-            arqv.getObj().escala(1);
+            arqv.getObj().escala(1.2);
             arqv.getObj().aplicarMA();
             arqv.getObj().calcularNormais();
 
@@ -207,30 +205,36 @@ namespace Mochileitor3DView.Controladora
 
         public void escalaMinus()
         {
-            arqv.getObj().escala(-1);
+            arqv.getObj().escala(-1.2);
             arqv.getObj().aplicarMA();
             arqv.getObj().calcularNormais();
         }
 
-        public void rotacaoEmX()
+        public void translacaoZ()
         {
-            arqv.getObj().chamarotacaoX();
+            arqv.getObj().translacao(1,1, 10);
             arqv.getObj().aplicarMA();
             arqv.getObj().calcularNormais();
-
         }
 
-        public void rotacaoEmY()
+        public void translacaoXY()
         {
-            arqv.getObj().chamarotacaoY();
+            arqv.getObj().translacao(10, 10, 1);
             arqv.getObj().aplicarMA();
             arqv.getObj().calcularNormais();
-
         }
 
-        public void rotacaoEmZ()
+        public void rotacaoXY(int sinal)
         {
-            arqv.getObj().chamarotacaoZ();
+            arqv.getObj().chamarotacaoX(sinal);
+            arqv.getObj().chamarotacaoY(sinal);
+            arqv.getObj().aplicarMA();
+            arqv.getObj().calcularNormais();
+        }     
+
+        public void rotacaoEmZ(int sinal)
+        {
+            arqv.getObj().chamarotacaoZ(sinal);
             arqv.getObj().aplicarMA();
             arqv.getObj().calcularNormais();
             
