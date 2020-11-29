@@ -14,6 +14,7 @@ namespace Mochileitor3DView.Controladora
         public ControladoraArquivo(string path)
         {
             this.arqv = new ArquivoOBJ(path);
+            Console.log("asas");
         }
 
         public Ponto retornaPespectiva(Ponto pontAtual, int d)
