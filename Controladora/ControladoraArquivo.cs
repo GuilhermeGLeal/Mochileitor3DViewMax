@@ -23,6 +23,7 @@ namespace Mochileitor3DView.Controladora
 
             novoPonto.X = (pontAtual.X * d) / (pontAtual.Z + d);
             novoPonto.Y = (pontAtual.Y * d) / (pontAtual.Z + d);
+            Console.WriteLine("asas");
 
             return novoPonto;
         }
