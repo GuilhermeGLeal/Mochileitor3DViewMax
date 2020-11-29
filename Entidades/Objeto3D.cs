@@ -201,19 +201,20 @@ namespace Mochileitor3DView
             return somaY / verticesAtuais.Count;
         }
 
-        public void rotacaoZ()
+        public void rotacaoZ(int sinal)
         {
             this.translacao(-retornaCX(), -retornaCY(), - retornaCZ());
-            this.chamarotacaoZ();
+            this.chamarotacaoZ(sinal);
             this.translacao(retornaCX(), retornaCY(), retornaCZ());
         }
 
-        public void chamarotacaoZ()
+        public void chamarotacaoZ(int sinal)
         {
             double rad = 5.0 * Math.PI / 180.0;
             double[,] matrizAngulo = new double[k, k];
             double soma;
 
+            rad = rad * sinal;
             matrizAngulo[0, 0] = Math.Cos(rad);
             matrizAngulo[0, 1] = -Math.Sin(rad);
             matrizAngulo[1, 0] = Math.Sin(rad);
@@ -241,18 +242,20 @@ namespace Mochileitor3DView
 
         }
 
-        public void rotacaoY()
+        public void rotacaoY(int sinal)
         {
             this.translacao(-retornaCX(), -retornaCY(), -retornaCZ());
-            this.chamarotacaoZ();
+            this.chamarotacaoY(sinal);
             this.translacao(retornaCX(), retornaCY(), retornaCZ());
         }
 
-        public void chamarotacaoY()
+        public void chamarotacaoY(int sinal)
         {
             double rad = 5.0 * Math.PI / 180.0;
             double[,] matrizAngulo = new double[k, k];
             double soma;
+
+            rad = rad * sinal;
 
             matrizAngulo[0, 0] = Math.Cos(rad);
             matrizAngulo[0, 2] = Math.Sin(rad);
@@ -281,18 +284,20 @@ namespace Mochileitor3DView
 
         }
 
-        public void rotacaoX()
+        public void rotacaoX(int sinal)
         {
             this.translacao(-retornaCX(), -retornaCY(), -retornaCZ());
-            this.chamarotacaoX();
+            this.chamarotacaoX(sinal);
             this.translacao(retornaCX(), retornaCY(), retornaCZ());
         }
 
-        public void chamarotacaoX()
+        public void chamarotacaoX(int sinal)
         {
             double rad = 20.0 * Math.PI / 180.0;
             double[,] matrizAngulo = new double[k, k];
             double soma;
+
+            rad = rad * sinal;
 
             matrizAngulo[0, 0] = 1;
             matrizAngulo[1, 1] = Math.Cos(rad);
@@ -321,20 +326,20 @@ namespace Mochileitor3DView
 
         }
 
-        public void escala(int multi)
+        public void escala(double multi)
         {
             this.translacao(-retornaCX(), -retornaCY(), -retornaCZ());
             this.chamaescala(multi);
             this.translacao(retornaCX(), retornaCY(), retornaCZ());
         }
 
-        public void chamaescala(int multi)
+        public void chamaescala(double multi)
         {
             double[,] matrizEscala = new double[k, k];
 
-            matrizEscala[0, 0] = 1.2 * multi;
-            matrizEscala[1, 1] = 1.2 * multi;
-            matrizEscala[2, 2] = 1.2 * multi;
+            matrizEscala[0, 0] = multi;
+            matrizEscala[1, 1] = multi;
+            matrizEscala[2, 2] = multi;
             matrizEscala[3, 3] = 1.0;
 
             double soma;
