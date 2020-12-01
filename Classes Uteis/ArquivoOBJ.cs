@@ -109,9 +109,9 @@ namespace Mochileitor3DView
             pontNovo.X = xAux;
             pontNovo.Y = yAux;
             pontNovo.Z = zAux;
-
+            Ponto pontNovo2 = new Ponto(xAux,yAux,zAux);
             objeto.setVerticesOrig(pontNovo);
-            objeto.setVerticeAtual(pontNovo);
+            objeto.setVerticeAtual(pontNovo2);
 
         }
 

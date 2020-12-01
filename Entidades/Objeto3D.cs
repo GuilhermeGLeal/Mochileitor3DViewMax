@@ -161,7 +161,18 @@ namespace Mochileitor3DView
                     this.matrizMa[linha, coluna] = soma;
                 }
             }
-
+            /*if(X>0)
+            {
+                matrizMa[0, 3] = 1;
+                matrizMa[1, 3] = 1;
+                matrizMa[2, 3] = 1;
+            }
+            else
+            {
+                matrizMa[0, 3] = -1;
+                matrizMa[1, 3] = -1;
+                matrizMa[2, 3] = -1;
+            }*/
             int aasd = 0;
         }
 
@@ -210,7 +221,7 @@ namespace Mochileitor3DView
 
         public void chamarotacaoZ(int sinal)
         {
-            double rad = 5.0 * Math.PI / 180.0;
+            double rad = 3.0 * Math.PI / 180.0;
             double[,] matrizAngulo = new double[k, k];
             double soma;
 
@@ -251,7 +262,7 @@ namespace Mochileitor3DView
 
         public void chamarotacaoY(int sinal)
         {
-            double rad = 5.0 * Math.PI / 180.0;
+            double rad = 3.0 * Math.PI / 180.0;
             double[,] matrizAngulo = new double[k, k];
             double soma;
 
@@ -293,7 +304,7 @@ namespace Mochileitor3DView
 
         public void chamarotacaoX(int sinal)
         {
-            double rad = 20.0 * Math.PI / 180.0;
+            double rad = 3.0 * Math.PI / 180.0;
             double[,] matrizAngulo = new double[k, k];
             double soma;
 

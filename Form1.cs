@@ -65,32 +65,32 @@ namespace Mochileitor3DView
         private void button2_Click(object sender, EventArgs e)
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
-            //control.rotacaoEmY();
-            //  control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            control.translacaoXY(-1);
+            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal, "", 100);
             picBoxPrincp.Image = imgPrincipal;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
-            //control.rotacaoEmZ();
-            //  control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            control.translacaoXY(1);
+            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal,"",100);
             picBoxPrincp.Image = imgPrincipal;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
-            control.escalaPlus();
-            //control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            control.rotacaoXY(1);
+            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal,"",100);
             picBoxPrincp.Image = imgPrincipal;
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
-            control.escalaMinus();
-           // control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal);
+            control.rotacaoXY(-1);
+            control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal,"",100);
             picBoxPrincp.Image = imgPrincipal;
         }
 
@@ -102,9 +102,9 @@ namespace Mochileitor3DView
             if(ctrl)
             {
                 if (e.Delta > 0)
-                    control.translacaoZ(10);
+                    control.translacaoZ(5);
                 else
-                    control.translacaoZ(-10);
+                    control.translacaoZ(-5);
             }
             else
             {
@@ -129,7 +129,7 @@ namespace Mochileitor3DView
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.Control)
+            if(!e.Control)
             {
                 this.ctrl = false;
             }

@@ -205,7 +205,7 @@ namespace Mochileitor3DView.Controladora
 
         public void escalaMinus()
         {
-            arqv.getObj().escala(-1.05);
+            arqv.getObj().escala(0.95);
             arqv.getObj().aplicarMA();
             arqv.getObj().calcularNormais();
         }
