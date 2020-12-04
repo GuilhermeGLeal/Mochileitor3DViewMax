@@ -141,7 +141,7 @@ namespace Mochileitor3DView
             matrizTrans[1, 1] = 1.0;
             matrizTrans[2, 2] = 1.0;
             matrizTrans[3, 3] = 1.0;
-            matrizTrans[0, 3] = X;
+            matrizTrans[0, 3] = X ;
             matrizTrans[1, 3] = Y;
             matrizTrans[2, 3] = Z;
 
@@ -161,19 +161,6 @@ namespace Mochileitor3DView
                     this.matrizMa[linha, coluna] = soma;
                 }
             }
-            /*if(X>0)
-            {
-                matrizMa[0, 3] = 1;
-                matrizMa[1, 3] = 1;
-                matrizMa[2, 3] = 1;
-            }
-            else
-            {
-                matrizMa[0, 3] = -1;
-                matrizMa[1, 3] = -1;
-                matrizMa[2, 3] = -1;
-            }*/
-            int aasd = 0;
         }
 
         public double retornaCX()
@@ -262,11 +249,10 @@ namespace Mochileitor3DView
 
         public void chamarotacaoY(int sinal)
         {
-            double rad = 3.0 * Math.PI / 180.0;
+            double rad = (sinal) * Math.PI / 180.0;
             double[,] matrizAngulo = new double[k, k];
             double soma;
 
-            rad = rad * sinal;
 
             matrizAngulo[0, 0] = Math.Cos(rad);
             matrizAngulo[0, 2] = Math.Sin(rad);
@@ -304,11 +290,11 @@ namespace Mochileitor3DView
 
         public void chamarotacaoX(int sinal)
         {
-            double rad = 3.0 * Math.PI / 180.0;
+            double rad = (sinal) * Math.PI / 180.0;
             double[,] matrizAngulo = new double[k, k];
             double soma;
 
-            rad = rad * sinal;
+            
 
             matrizAngulo[0, 0] = 1;
             matrizAngulo[1, 1] = Math.Cos(rad);
@@ -416,9 +402,9 @@ namespace Mochileitor3DView
             Ponto vetorFinal = new Ponto();
             double posI, posJ, posK;
 
-            posI = (matrizDeterm[1, 1] + matrizDeterm[2, 2]) - (matrizDeterm[1,2] + matrizDeterm[2,1]);
-            posJ = (matrizDeterm[1, 2] + matrizDeterm[2, 0]) - (matrizDeterm[1,0] + matrizDeterm[2,2]);
-            posK = (matrizDeterm[1,0] + matrizDeterm[2,1]) - (matrizDeterm[1,1] + matrizDeterm[2,0]);
+            posI = (matrizDeterm[1, 1] * matrizDeterm[2, 2]) - (matrizDeterm[1,2] * matrizDeterm[2,1]);
+            posJ = (matrizDeterm[1, 2] * matrizDeterm[2, 0]) - (matrizDeterm[1,0] * matrizDeterm[2,2]);
+            posK = (matrizDeterm[1,0] * matrizDeterm[2,1]) - (matrizDeterm[1,1] * matrizDeterm[2,0]);
 
             vetorFinal.X = posI;
             vetorFinal.Y = posJ;
@@ -465,7 +451,7 @@ namespace Mochileitor3DView
             Ponto vetorFinal;
             double [,]matrizDeterm = new double[3,3];
             double tamVetor;
-
+            this.normaisFace = new List<Ponto>();
             for (int i = 0; i < this.qtdFaces; i++)
             {
                 indices = this.retornaIndices(i);

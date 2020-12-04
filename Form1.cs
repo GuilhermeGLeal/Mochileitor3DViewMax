@@ -15,15 +15,15 @@ namespace Mochileitor3DView
     {
         private ControladoraArquivo control;
         private Bitmap imgPrincipal;
-        private Boolean wheel;
-        private Boolean ctrl;
+        private int xaux, yaux;
+        private Boolean ctrl,shift,clicado;
 
         public Form1()
         {
             InitializeComponent();
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
             picBoxPrincp.Image = imgPrincipal;
-            this.ctrl = this.wheel = false;
+            this.ctrl = this.clicado = this.shift = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -65,7 +65,7 @@ namespace Mochileitor3DView
         private void button2_Click(object sender, EventArgs e)
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
-            control.translacaoXY(-1);
+            control.translacaoXY(-1,-1);
             control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal, "", 100);
             picBoxPrincp.Image = imgPrincipal;
         }
@@ -73,7 +73,7 @@ namespace Mochileitor3DView
         private void button3_Click(object sender, EventArgs e)
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
-            control.translacaoXY(1);
+            control.translacaoXY(1,1);
             control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal,"",100);
             picBoxPrincp.Image = imgPrincipal;
         }
@@ -81,7 +81,7 @@ namespace Mochileitor3DView
         private void button4_Click(object sender, EventArgs e)
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
-            control.rotacaoXY(1);
+            control.rotacaoXY(1,1);
             control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal,"",100);
             picBoxPrincp.Image = imgPrincipal;
         }
@@ -89,7 +89,7 @@ namespace Mochileitor3DView
         private void button5_Click(object sender, EventArgs e)
         {
             imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
-            control.rotacaoXY(-1);
+            control.rotacaoXY(-1,-1);
             control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal,"",100);
             picBoxPrincp.Image = imgPrincipal;
         }
@@ -102,28 +102,40 @@ namespace Mochileitor3DView
             if(ctrl)
             {
                 if (e.Delta > 0)
-                    control.translacaoZ(5);
+                    control.translacaoZ(1);
                 else
-                    control.translacaoZ(-5);
+                    control.translacaoZ(-1);
+            }
+            else if(shift)
+            {
+                if (e.Delta > 0)
+                    control.rotacaoEmZ(1);
+                else
+                    control.rotacaoEmZ(-1);
             }
             else
             {
                 if (e.Delta > 0)
-                    control.escalaMinus();
-                else
                     control.escalaPlus();
+                else
+                    control.escalaMinus();
             }
            
             control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal, "", 100);
-            picBoxPrincp.Image = imgPrincipal;
-            
+            picBoxPrincp.Image = imgPrincipal;          
         }
+
+        
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if(e.Control)
             {
                 this.ctrl = true;
+            }
+            if(e.Shift)
+            {
+                this.shift = true;
             }
         }
 
@@ -133,6 +145,41 @@ namespace Mochileitor3DView
             {
                 this.ctrl = false;
             }
+            if(!e.Shift)
+            {
+                this.shift = false;
+            }
+        }
+
+        private void picBoxPrincp_MouseDown(object sender, MouseEventArgs e)
+        {
+            clicado = true;
+            yaux = e.Y;
+            xaux = e.X;
+        }
+
+        private void picBoxPrincp_MouseUp(object sender, MouseEventArgs e)
+        {
+            clicado = false;
+        }
+
+        private void picBoxPrincp_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(clicado)
+            {
+                imgPrincipal = new Bitmap(picBoxPrincp.Width, picBoxPrincp.Height);
+
+                if (e.Button == MouseButtons.Left)
+                    control.rotacaoXY(yaux - e.Y, e.X - xaux);
+                else if (e.Button == MouseButtons.Right)
+                    control.translacaoXY(e.X - xaux, e.Y - yaux);
+
+                control.verificaDesenho(ckFacesOcultas.Checked, imgPrincipal, "", 100);
+                picBoxPrincp.Image = imgPrincipal;
+            }
+            
+            yaux = e.Y;
+            xaux = e.X;
         }
     }
 }

@@ -131,6 +131,9 @@
             this.picBoxPrincp.Size = new System.Drawing.Size(901, 732);
             this.picBoxPrincp.TabIndex = 1;
             this.picBoxPrincp.TabStop = false;
+            this.picBoxPrincp.MouseDown += new System.Windows.Forms.MouseEventHandler(this.picBoxPrincp_MouseDown);
+            this.picBoxPrincp.MouseMove += new System.Windows.Forms.MouseEventHandler(this.picBoxPrincp_MouseMove);
+            this.picBoxPrincp.MouseUp += new System.Windows.Forms.MouseEventHandler(this.picBoxPrincp_MouseUp);
             // 
             // ckFacesOcultas
             // 

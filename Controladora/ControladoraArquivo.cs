@@ -125,9 +125,8 @@ namespace Mochileitor3DView.Controladora
             {
 
                 pont1 = arqv.getObj().getnormaisFace(i);
-                result = pont1.Z * 1.0;
 
-                if(result >= 0)
+                if(pont1.Z >= 0)
                 {
                     indices = arqv.getObj().retornaIndices(i);
 
@@ -217,19 +216,20 @@ namespace Mochileitor3DView.Controladora
             arqv.getObj().calcularNormais();
         }
 
-        public void translacaoXY(int valorTrans)
+        public void translacaoXY(int x,int y)
         {
-            arqv.getObj().translacao(valorTrans, valorTrans, 0);
+            arqv.getObj().translacao(x, y, 0);
             arqv.getObj().aplicarMA();
             arqv.getObj().calcularNormais();
         }
 
-        public void rotacaoXY(int sinal)
+        public void rotacaoXY(int x,int y)
         {
-            arqv.getObj().chamarotacaoX(sinal);
-            arqv.getObj().chamarotacaoY(sinal);
+            arqv.getObj().chamarotacaoX(x);
+            arqv.getObj().chamarotacaoY(y);
             arqv.getObj().aplicarMA();
             arqv.getObj().calcularNormais();
+            
         }     
 
         public void rotacaoEmZ(int sinal)
